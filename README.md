@@ -16,7 +16,7 @@ Bu proje, büyük metin dosyalarının verimli bir şekilde okunmasını sağlam
 #include "get_next_line.h"
 #include <stdio.h>
 #include <fcntl.h>
-#include <stdlib.h> // free için eklendi
+#include <stdlib.h>
 
 int main() {
     int fd = open("myfile.txt", O_RDONLY);
@@ -25,17 +25,17 @@ int main() {
     while (get_next_line(fd, &line) > 0)
     {
         printf("%s\n", line);
-        free(line); // Belleği boşaltmayı unutmayın
+        free(line);
     }
 
     if (get_next_line(fd, &line) == -1)
-    { // Hata kontrolü
+    {
         perror("get_next_line");
-        free(line); // line null değilse boşalt
+        free(line);
         close(fd);
-        return 1;
+        return (1);
     }
-    free(line); // Son satırı da boşalt
+    free(line);
     close(fd);
-    return 0;
+    return (0);
 }
